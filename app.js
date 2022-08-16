@@ -3,31 +3,31 @@
 // Product Constructor:
 // Only parameter is name, because click always starts at 0
 function Product(name) {
-    this.name = name;
-    this.clicked = 0;
+  this.name = name;
+  this.clicked = 0;
 }
 
 // Products Category 
 let allProducts = [
-    new Product('bag'),
-    new Product ('banana'),
-    new Product ('bathroom'),
-    new Product ('boots'),
-    new Product ('breakfast'),
-    new Product ('bubblegum'),
-    new Product ('chair'),
-    new Product ('cthulhu'),
-    new Product ('dog-duck'),
-    new Product ('dragon'),
-    new Product ('pen'),
-    new Product ('pet-sweep'),
-    new Product ('scissors'),
-    new Product ('shark'),
-    new Product ('sweep'),
-    new Product ('tauntaun'),
-    new Product ('unicorn'),
-    new Product ('water-can'),
-    new Product ('wine-glass')
+  new Product('bag'),
+  new Product ('banana'),
+  new Product ('bathroom'),
+  new Product ('boots'),
+  new Product ('breakfast'),
+  new Product ('bubblegum'),
+  new Product ('chair'),
+  new Product ('cthulhu'),
+  new Product ('dog-duck'),
+  new Product ('dragon'),
+  new Product ('pen'),
+  new Product ('pet-sweep'),
+  new Product ('scissors'),
+  new Product ('shark'),
+  new Product ('sweep'),
+  new Product ('tauntaun'),
+  new Product ('unicorn'),
+  new Product ('water-can'),
+  new Product ('wine-glass')
 ];
 
 let currentRound = 1;
