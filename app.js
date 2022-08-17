@@ -1,10 +1,11 @@
-'use strict'
+'use strict';
 
 // Product Constructor:
 // Only parameter is name, because click always starts at 0
 function Product(name) {
   this.name = name;
   this.clicked = 0;
+  this.shown = 0;
 }
 
 // Products Category 
@@ -30,58 +31,126 @@ let allProducts = [
   new Product ('wine-glass')
 ];
 
-let currentRound = 1;
+let currentRound = 0;
 let randomArray = [];
 
 // Return random index inside allProducts array 
 function randomImage() {
-    // Return a random index inside allProducts array 
-    return Math.floor(Math.random() * allProducts.length)
+  // Return a random index inside allProducts array 
+  return Math.floor(Math.random() * allProducts.length)
 }
 
 // Event Listener Steps:
 let button = [document.getElementById('button0'), document.getElementById('button1'), document.getElementById('button2')];
 for (let i = 0; i < button.length; i++){
-    button[i].addEventListener('click', showNewImage);
+  button[i].addEventListener('click', showNewImage);
 }
 
 // Event handler that gets invoked when button is clicked 
-function showNewImage() {
-    console.log(randomArray);
-    // Generate a random product 
-    let product = 0;
-    // Select img 
-    for (let i = 0; i < randomArray.length; i++){
-        product = randomArray[i];
-        let img = document.getElementById(`productImage${i}`)
+function showNewImage(event) {
+  console.log(randomArray);
+  // Generate a random product 
+  let product = 0;
+  // Select img 
+  for (let i = 0; i < randomArray.length; i++){
+    product = randomArray[i];
+    let img = document.getElementById(`productImage${i}`)
     // Make img the product 
-        img.src = `img/${product.name}.jpg`;
-        img.alt = product.name;
-        img.title = product.name;
-            // Increments shown product's .clicked property 
+    img.src = `img/${product.name}.jpg`;
+    img.alt = product.name;
+    img.title = product.name;
+
+    if (event){
+      if (img === event.target){
         product.clicked++;
+      }
     }
-    currentRound++;
-    if (currentRound === 25){
+  }
+  product.shown++;
+  currentRound++;
+  if (currentRound === 5){
     for ( let i = 0; i < button.length; i++){
-        button.removeEventListener('click', showNewImage);
-        }
-        // Remove my event listener
+      button[i].removeEventListener('click', showNewImage);
     }
+  }
+  // Increments shown product'sproperty 
+  generateRandomArray();
 }
 
 
 // HINT: use Array.includes() to generate 3 random images 
 function generateRandomArray () {
-    while (randomArray.length < 3) {
-        let randomIndex = randomImage();
-        while (!randomArray.includes(allProducts[randomIndex])) {
-            randomArray.push(allProducts[randomIndex]);
-        }
+  while (randomArray.length < 3) {
+    let randomIndex = randomImage();
+    while (!randomArray.includes(allProducts[randomIndex])) {
+      randomArray.push(allProducts[randomIndex]);
     }
+  }
+
+  randomArray.shift();
+  randomArray.shift();
+  randomArray.shift();
+
+  while (randomArray.length < 3) {
+    let randomIndex = randomImage();
+    while (!randomArray.includes(allProducts[randomIndex])) {
+      randomArray.push(allProducts[randomIndex]);
+    }
+  }
 }
 
 generateRandomArray();
 showNewImage();
 
 console.log(randomArray);
+
+// // Chart 
+// const labels = [
+//     'January',
+//     'February',
+//     'March',
+//     'April',
+//     'May',
+//     'June',
+//   ];
+
+//   const data = {
+//     labels: labels,
+//     datasets: [{
+//       label: allProducts[0],
+//       backgroundColor: 'rgb(255, 99, 132)',
+//       borderColor: 'rgb(255, 99, 132)',
+//       data: [0, 10, 5, 2, 20, 30, 45],
+//     }]
+//   };
+
+//   const config = {
+//     type: 'line',
+//     data: data,
+//     options: {}
+//   };
+
+//   const myChart = new Chart(
+//     document.getElementById('myChart'),
+//     config
+//   );
+
+// let strings = [];
+// let uniqueNUmbers = [];
+
+
+// // Generate random number between 0-max
+// function randomIndex (length){
+//     return Math.floor(Math.random() * lrngth);
+// }
+
+// while (uniqueNUmbers.length < 3){
+//     let randomIndex = randomIndex(strings.length);
+//     while (!uniqueNUmbers.includes(strings[randomIndex])){
+//         uniqueNUmbers.push(strings[randomIndex]);
+//     }
+// }
+
+// uniqueNUmbers.shift();
+// uniqueNUmbers.shift();
+// uniqueNUmbers.shift();
