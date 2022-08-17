@@ -48,17 +48,18 @@ for (let i = 0; i < button.length; i++){
 
 // Event handler that gets invoked when button is clicked 
 function showNewImage(event) {
-  console.log(randomArray);
   // Generate a random product 
   let product = 0;
   // Select img 
   for (let i = 0; i < randomArray.length; i++){
     product = randomArray[i];
+    product.shown++;
     let img = document.getElementById(`productImage${i}`)
     // Make img the product 
     img.src = `img/${product.name}.jpg`;
     img.alt = product.name;
     img.title = product.name;
+
 
     if (event){
       if (img === event.target){
@@ -66,13 +67,14 @@ function showNewImage(event) {
       }
     }
   }
-  product.shown++;
+
   currentRound++;
   if (currentRound === 5){
     for ( let i = 0; i < button.length; i++){
       button[i].removeEventListener('click', showNewImage);
     }
   }
+  console.log(randomArray);
   // Increments shown product'sproperty 
   generateRandomArray();
 }
@@ -102,7 +104,21 @@ function generateRandomArray () {
 generateRandomArray();
 showNewImage();
 
-console.log(randomArray);
+let results = document.getElementById('getResults');
+results.addEventListener('click', getResults);
+
+function getResults (){
+  let ul = document.createElement('ul');
+  results.appendChild(ul);
+  for (let i = 0; i < allProducts.length; i++){
+    let list = document.createElement('li');
+    list.innerText = `${allProducts[i].name} was shown ${allProducts[i].shown} times and was clicked ${allProducts[i].clicked} times.`;
+    ul.appendChild(list);
+  }
+}
+
+
+
 
 // // Chart 
 // const labels = [
