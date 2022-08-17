@@ -69,7 +69,7 @@ function showNewImage(event) {
   }
 
   currentRound++;
-  if (currentRound === 5){
+  if (currentRound === 26){
     for ( let i = 0; i < button.length; i++){
       button[i].removeEventListener('click', showNewImage);
     }
@@ -108,12 +108,14 @@ let results = document.getElementById('getResults');
 results.addEventListener('click', getResults);
 
 function getResults (){
-  let ul = document.createElement('ul');
-  results.appendChild(ul);
-  for (let i = 0; i < allProducts.length; i++){
-    let list = document.createElement('li');
-    list.innerText = `${allProducts[i].name} was shown ${allProducts[i].shown} times and was clicked ${allProducts[i].clicked} times.`;
-    ul.appendChild(list);
+  if (currentRound === 26){
+    let ul = document.createElement('ul');
+    results.appendChild(ul);
+    for (let i = 0; i < allProducts.length; i++){
+      let list = document.createElement('li');
+      list.innerText = `${allProducts[i].name} was shown ${allProducts[i].shown} times and was clicked ${allProducts[i].clicked} times.`;
+      ul.appendChild(list);
+    }
   }
 }
 
