@@ -75,7 +75,6 @@ function showNewImage(event) {
     }
 
     alert('Finished voting! View results.');
-    renderChart();
   }
   console.log(randomIndex);
   // Increments shown product'sproperty 
@@ -119,6 +118,8 @@ function getResults (){
       list.innerText = `${allProducts[i].name} was shown ${allProducts[i].shown} times and was clicked ${allProducts[i].clicked} times.`;
       ul.appendChild(list);
     }
+
+    renderChart();
   }
 }
 
