@@ -73,6 +73,9 @@ function showNewImage(event) {
     for ( let i = 0; i < button.length; i++){
       button[i].removeEventListener('click', showNewImage);
     }
+
+    alert('Finished voting! View results.');
+    renderChart();
   }
   console.log(randomIndex);
   // Increments shown product'sproperty 
@@ -84,7 +87,7 @@ function showNewImage(event) {
 function generateRandomIndex () {
   while (randomIndex.length < 3) {
     let randomImg = randomImage();
-    while (!randomIndex.includes(allProducts[randomImg])) {
+    if (!randomIndex.includes(allProducts[randomImg])) {
       randomIndex.push(allProducts[randomImg]);
     }
   }
@@ -95,7 +98,7 @@ function generateRandomIndex () {
 
   while (randomIndex.length < 3) {
     let randomImg = randomImage();
-    while (!randomIndex.includes(allProducts[randomImg])) {
+    if (!randomIndex.includes(allProducts[randomImg])) {
       randomIndex.push(allProducts[randomImg]);
     }
   }
@@ -119,56 +122,54 @@ function getResults (){
   }
 }
 
+// Render the chart after 25 clicks
+function renderChart() {
+  let productNames = [];
+  let clicks = [];
+  let shown = [];
+  for (let i = 0; i < allProducts.length; i++) {
+    productNames.push(allProducts[i].name);
+    clicks.push(allProducts[i].clicked);
+    shown.push(allProducts[i].shown);
+  }
 
+  const ctx = document.getElementById("myChart").getContext("2d");
+  const myChart = new Chart (ctx, {
+    type: "bar",
+    data: {
+      labels: productNames,
+      datasets: [
+        {
+          label: "# of Votes",
+          data: clicks,
+          backgroundColor: [
+            "#D5D6EA"
+          ],
+          borderColor: [
+            "#D5D6EA"
+          ],
+          borderWidth: 1,
+        },
 
-
-// // Chart 
-// const labels = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//   ];
-
-//   const data = {
-//     labels: labels,
-//     datasets: [{
-//       label: allProducts[0],
-//       backgroundColor: 'rgb(255, 99, 132)',
-//       borderColor: 'rgb(255, 99, 132)',
-//       data: [0, 10, 5, 2, 20, 30, 45],
-//     }]
-//   };
-
-//   const config = {
-//     type: 'line',
-//     data: data,
-//     options: {}
-//   };
-
-//   const myChart = new Chart(
-//     document.getElementById('myChart'),
-//     config
-//   );
-
-// let strings = [];
-// let uniqueNUmbers = [];
-
-
-// // Generate random number between 0-max
-// function randomIndex (length){
-//     return Math.floor(Math.random() * lrngth);
-// }
-
-// while (uniqueNUmbers.length < 3){
-//     let randomIndex = randomIndex(strings.length);
-//     while (!uniqueNUmbers.includes(strings[randomIndex])){
-//         uniqueNUmbers.push(strings[randomIndex]);
-//     }
-// }
-
-// uniqueNUmbers.shift();
-// uniqueNUmbers.shift();
-// uniqueNUmbers.shift();
+        {
+          label: "# of Times Shown",
+          data: shown,
+          backgroundColor: [
+            "#F3DDF2",
+          ],
+          borderColor: [
+            "#F3DDF2"
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
