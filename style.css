@@ -1,3 +1,62 @@
+html, body { height: 100%;}
+
+body > footer {
+  position: sticky;
+  top: 100vh;
+}
+
+body {
+    font-family: 'Merriweather Sans', sans-serif;
+    width: 80%;
+    margin: auto;
+}
+
+header {
+    background-color: #D7ECD9;
+    height: 60px;
+    margin-bottom: 30px;
+    color: gray;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+}
+
 img {
-    height: 400px;
+    height: 320px;
+    width: 325px;
+}
+
+footer {
+    background-color: #D7ECD9;
+    color: gray;
+    text-align: center;
+    padding: 5px;
+}
+
+
+#getResults {
+    background-color: #F5D5CB;
+    border: none;
+    color: gray;
+    width: 100px;
+    height: 30px;
+}
+
+#results {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#randomImg {
+    margin-left: 93px;
+    margin-right: 93px;
+}
+
+#info {
+    color: gray;
+    margin: auto;
+    text-align: center;
+    width: 80%;
 }

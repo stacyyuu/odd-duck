@@ -32,7 +32,7 @@ let allProducts = [
 ];
 
 let currentRound = 0;
-let randomArray = [];
+let randomIndex = [];
 
 // Return random index inside allProducts array 
 function randomImage() {
@@ -51,10 +51,10 @@ function showNewImage(event) {
   // Generate a random product 
   let product = 0;
   // Select img 
-  for (let i = 0; i < randomArray.length; i++){
-    product = randomArray[i];
+  for (let i = 0; i < randomIndex.length; i++){
+    product = randomIndex[i];
     product.shown++;
-    let img = document.getElementById(`productImage${i}`)
+    let img = document.getElementById(`productImage${i}`);
     // Make img the product 
     img.src = `img/${product.name}.jpg`;
     img.alt = product.name;
@@ -74,34 +74,34 @@ function showNewImage(event) {
       button[i].removeEventListener('click', showNewImage);
     }
   }
-  console.log(randomArray);
+  console.log(randomIndex);
   // Increments shown product'sproperty 
-  generateRandomArray();
+  generateRandomIndex();
 }
 
 
 // HINT: use Array.includes() to generate 3 random images 
-function generateRandomArray () {
-  while (randomArray.length < 3) {
-    let randomIndex = randomImage();
-    while (!randomArray.includes(allProducts[randomIndex])) {
-      randomArray.push(allProducts[randomIndex]);
+function generateRandomIndex () {
+  while (randomIndex.length < 3) {
+    let randomImg = randomImage();
+    while (!randomIndex.includes(allProducts[randomImg])) {
+      randomIndex.push(allProducts[randomImg]);
     }
   }
 
-  randomArray.shift();
-  randomArray.shift();
-  randomArray.shift();
+  randomIndex.shift();
+  randomIndex.shift();
+  randomIndex.shift();
 
-  while (randomArray.length < 3) {
-    let randomIndex = randomImage();
-    while (!randomArray.includes(allProducts[randomIndex])) {
-      randomArray.push(allProducts[randomIndex]);
+  while (randomIndex.length < 3) {
+    let randomImg = randomImage();
+    while (!randomIndex.includes(allProducts[randomImg])) {
+      randomIndex.push(allProducts[randomImg]);
     }
   }
 }
 
-generateRandomArray();
+generateRandomIndex();
 showNewImage();
 
 let results = document.getElementById('getResults');
