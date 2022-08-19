@@ -77,7 +77,7 @@ function showNewImage(event) {
     alert('Finished voting! View results.');
   }
   console.log(randomIndex);
-  // Increments shown product'sproperty 
+  // Increments shown product's property 
   generateRandomIndex();
 }
 
@@ -90,17 +90,18 @@ function generateRandomIndex () {
       randomIndex.push(allProducts[randomImg]);
     }
   }
+  generateNewIndex();
+}
 
-  randomIndex.shift();
-  randomIndex.shift();
-  randomIndex.shift();
-
-  while (randomIndex.length < 3) {
+function generateNewIndex () {
+  let newIndex = [];
+  while (newIndex.length < 3) {
     let randomImg = randomImage();
-    if (!randomIndex.includes(allProducts[randomImg])) {
-      randomIndex.push(allProducts[randomImg]);
+    if (!newIndex.includes(allProducts[randomImg]) && !randomIndex.includes(allProducts[randomImg])){
+      newIndex.push(allProducts[randomImg]);
     }
   }
+  randomIndex = newIndex;
 }
 
 generateRandomIndex();
