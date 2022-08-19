@@ -76,7 +76,6 @@ function showNewImage(event) {
 
     alert('Finished voting! View results.');
   }
-  console.log(randomIndex);
   // Increments shown product's property 
   generateRandomIndex();
 }
@@ -101,6 +100,7 @@ function generateNewIndex () {
       newIndex.push(allProducts[randomImg]);
     }
   }
+  console.log(randomIndex, newIndex);
   randomIndex = newIndex;
 }
 
