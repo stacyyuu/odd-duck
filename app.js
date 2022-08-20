@@ -32,12 +32,13 @@ let allProducts = [
 ];
 
 let currentRound = 0;
+// Empty array to push random index generated 
 let randomIndex = [];
 
 // Return random index inside allProducts array 
 function randomImage() {
   // Return a random index inside allProducts array 
-  return Math.floor(Math.random() * allProducts.length)
+  return Math.floor(Math.random() * allProducts.length);
 }
 
 // Event Listener Steps:
@@ -50,24 +51,25 @@ for (let i = 0; i < button.length; i++){
 function showNewImage(event) {
   // Generate a random product 
   let product = 0;
-  // Select img 
+  // Iterate over the random array and assign product to i 
   for (let i = 0; i < randomIndex.length; i++){
     product = randomIndex[i];
+    // Increments shown products for each image
     product.shown++;
+    // Get image by id, use i in string interpolation to iterate over ids 0-2
     let img = document.getElementById(`productImage${i}`);
-    // Make img the product 
+    // Assign image to product 3x
     img.src = `img/${product.name}.jpg`;
     img.alt = product.name;
     img.title = product.name;
-
-
+    // If image equals the event.targeted, then increment to clicked
     if (event){
       if (img === event.target){
         product.clicked++;
       }
     }
   }
-
+  // Increment over current round 
   currentRound++;
   if (currentRound === 26){
     for ( let i = 0; i < button.length; i++){
@@ -76,13 +78,14 @@ function showNewImage(event) {
 
     alert('Finished voting! View results.');
   }
-  // Increments shown product's property 
+  // Generate new random index 
   generateRandomIndex();
 }
 
 
 // HINT: use Array.includes() to generate 3 random images 
 function generateRandomIndex () {
+  // Give length to random index
   while (randomIndex.length < 3) {
     let randomImg = randomImage();
     if (!randomIndex.includes(allProducts[randomImg])) {
@@ -119,7 +122,7 @@ function getResults (){
       list.innerText = `${allProducts[i].name} was shown ${allProducts[i].shown} times and was clicked ${allProducts[i].clicked} times.`;
       ul.appendChild(list);
     }
-
+    // Render chart when view results clicked 
     renderChart();
   }
 }
