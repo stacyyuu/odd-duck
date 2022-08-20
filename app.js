@@ -76,7 +76,7 @@ function showNewImage(event) {
       button[i].removeEventListener('click', showNewImage);
     }
 
-    alert('Finished voting! View results.');
+    alert('Finished voting! View results in a list and graph format.');
   }
   // Generate new random index 
   generateRandomIndex();
