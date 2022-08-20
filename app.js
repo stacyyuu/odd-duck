@@ -44,11 +44,11 @@ function randomImage() {
 // Event Listener Steps:
 let button = [document.getElementById('button0'), document.getElementById('button1'), document.getElementById('button2')];
 for (let i = 0; i < button.length; i++){
-  button[i].addEventListener('click', showNewImage);
+  button[i].addEventListener('click', generateRandomImages);
 }
 
 // Event handler that gets invoked when button is clicked 
-function showNewImage(event) {
+function generateRandomImages(event) {
   // Generate a random product 
   let product = 0;
   // Iterate over the random array and assign product to i 
@@ -73,10 +73,10 @@ function showNewImage(event) {
   currentRound++;
   if (currentRound === 26){
     for ( let i = 0; i < button.length; i++){
-      button[i].removeEventListener('click', showNewImage);
+      button[i].removeEventListener('click', generateRandomImages);
     }
 
-    alert('Finished voting! View results in a list and graph format.');
+    alert('Finished voting! View your results by clicking the results button.');
   }
   // Generate new random index 
   generateRandomIndex();
@@ -108,7 +108,7 @@ function generateNewIndex () {
 }
 
 generateRandomIndex();
-showNewImage();
+generateRandomImages();
 
 let results = document.getElementById('getResults');
 results.addEventListener('click', getResults);
@@ -133,7 +133,7 @@ function renderChart() {
   let clicks = [];
   let shown = [];
   for (let i = 0; i < allProducts.length; i++) {
-    productNames.push(allProducts[i].name);
+    productNames.push(allProducts[i].name[0].toUpperCase() + allProducts[i].name.slice(1, allProducts[i].name.length));
     clicks.push(allProducts[i].clicked);
     shown.push(allProducts[i].shown);
   }
@@ -178,3 +178,14 @@ function renderChart() {
     },
   });
 }
+
+
+// Steps of Local Storage:
+
+// 1. Setting items
+// JSON.stringify(variable);
+// localStorage.setItem("key", "value");
+
+//2. Getting Items
+// localStorage.getItem("key");
+// JSON.parse(variable);
