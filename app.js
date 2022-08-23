@@ -80,6 +80,8 @@ function generateRandomImages(event) {
   }
   // Generate new random index 
   generateRandomIndex();
+  // Local Storage
+  setAllProducts();
 }
 
 
@@ -124,6 +126,8 @@ function getResults (){
     }
     // Render chart when view results clicked 
     renderChart();
+
+    // Invoke setAllProducts function here 
   }
 }
 
@@ -186,6 +190,20 @@ function renderChart() {
 // JSON.stringify(variable);
 // localStorage.setItem("key", "value");
 
+// Function set allProducts
+// function setAllProducts (key, value){
+
+// }
+
+function setAllProducts (){
+  let stringify = JSON.stringify(allProducts);
+  localStorage.setItem('All Products', stringify);
+}
+
+
 //2. Getting Items
 // localStorage.getItem("key");
 // JSON.parse(variable);
+
+// Function get allProducts 
+// Invoked when page is loaded 
