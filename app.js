@@ -76,12 +76,17 @@ function generateRandomImages(event) {
       button[i].removeEventListener('click', generateRandomImages);
     }
 
+    localStorage.removeItem('All Products');
+    localStorage.removeItem('Round');
+
     alert('Finished voting! View your results by clicking the results button.');
   }
   // Generate new random index 
   generateRandomIndex();
+
   // Local Storage
-  setAllProducts();
+  setItems();
+  getItems();
 }
 
 
@@ -183,12 +188,16 @@ function renderChart() {
   });
 }
 
-function setAllProducts (){
-  let stringify = JSON.stringify(allProducts);
-  localStorage.setItem('All Products', stringify);
+function setItems (){
+  let stringifyVersion = JSON.stringify(allProducts);
+  localStorage.setItem('All Products', stringifyVersion);
+}
 
-  localStorage.getItem('All Products');
-  JSON.parse(stringify);
+function getItems (){
+  let stringifyVersion = localStorage.getItem('All Products');
+  let parsedVersion = JSON.parse(stringifyVersion);
+  
+  return parsedVersion;
 }
 
 // Steps of Local Storage:
@@ -206,5 +215,5 @@ function setAllProducts (){
 // localStorage.getItem("key");
 // JSON.parse(variable);
 
-// Function get allProducts 
-// Invoked when page is loaded 
+// Function get allProducts
+// Invoked when page is loaded
