@@ -183,6 +183,13 @@ function renderChart() {
   });
 }
 
+function setAllProducts (){
+  let stringify = JSON.stringify(allProducts);
+  localStorage.setItem('All Products', stringify);
+
+  localStorage.getItem('All Products');
+  JSON.parse(stringify);
+}
 
 // Steps of Local Storage:
 
@@ -194,12 +201,6 @@ function renderChart() {
 // function setAllProducts (key, value){
 
 // }
-
-function setAllProducts (){
-  let stringify = JSON.stringify(allProducts);
-  localStorage.setItem('All Products', stringify);
-}
-
 
 //2. Getting Items
 // localStorage.getItem("key");
