@@ -111,6 +111,7 @@ function generateNewIndex () {
   randomIndex = newIndex;
 }
 
+
 generateRandomIndex();
 generateRandomImages();
 
