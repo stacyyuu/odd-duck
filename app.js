@@ -194,11 +194,13 @@ function setItems (){
 }
 
 function getItems (){
+  console.log(allProducts);
   let stringifyVersion = localStorage.getItem('All Products');
   let parsedVersion = JSON.parse(stringifyVersion);
-  
-  return parsedVersion;
+  allProducts = parsedVersion;
+  console.log(allProducts);
 }
+
 
 // Steps of Local Storage:
 
