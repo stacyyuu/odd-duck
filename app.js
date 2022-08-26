@@ -66,6 +66,8 @@ function generateRandomImages(event) {
     if (event){
       if (img === event.target){
         product.clicked++;
+
+        // Save to local storage each time items are clicked 
         setItems();
       }
     }
@@ -115,6 +117,7 @@ function generateNewIndex () {
 generateRandomIndex();
 generateRandomImages();
 
+// Get saved items in local storage when page loads, but only if there is something available in local storage
 let getProducts = localStorage.getItem('All Products');
 if (getProducts !== null){
   getItems();
@@ -134,8 +137,6 @@ function getResults (){
     }
     // Render chart when view results clicked 
     renderChart();
-
-    // Invoke setAllProducts function here 
   }
 }
 
