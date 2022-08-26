@@ -115,7 +115,6 @@ function generateNewIndex () {
 generateRandomIndex();
 generateRandomImages();
 
-// Local Storage
 let getProducts = localStorage.getItem('All Products');
 if (getProducts !== null){
   getItems();
@@ -198,27 +197,8 @@ function setItems (){
 }
 
 function getItems (){
-  console.log(allProducts);
   let stringifyVersion = localStorage.getItem('All Products');
   let parsedVersion = JSON.parse(stringifyVersion);
   allProducts = parsedVersion;
-  console.log(allProducts);
 }
 
-// Steps of Local Storage:
-
-// 1. Setting items
-// JSON.stringify(variable);
-// localStorage.setItem("key", "value");
-
-// Function set allProducts
-// function setAllProducts (key, value){
-
-// }
-
-//2. Getting Items
-// localStorage.getItem("key");
-// JSON.parse(variable);
-
-// Function get allProducts
-// Invoked when page is loaded
