@@ -66,6 +66,7 @@ function generateRandomImages(event) {
     if (event){
       if (img === event.target){
         product.clicked++;
+        setItems();
       }
     }
   }
@@ -83,10 +84,6 @@ function generateRandomImages(event) {
   }
   // Generate new random index 
   generateRandomIndex();
-
-  // Local Storage
-  setItems();
-  getItems();
 }
 
 
@@ -114,8 +111,15 @@ function generateNewIndex () {
   randomIndex = newIndex;
 }
 
+
 generateRandomIndex();
 generateRandomImages();
+
+// Local Storage
+let getProducts = localStorage.getItem('All Products');
+if (getProducts !== null){
+  getItems();
+}
 
 let results = document.getElementById('getResults');
 results.addEventListener('click', getResults);
@@ -194,10 +198,11 @@ function setItems (){
 }
 
 function getItems (){
+  console.log(allProducts);
   let stringifyVersion = localStorage.getItem('All Products');
   let parsedVersion = JSON.parse(stringifyVersion);
-  
-  return parsedVersion;
+  allProducts = parsedVersion;
+  console.log(allProducts);
 }
 
 // Steps of Local Storage:
